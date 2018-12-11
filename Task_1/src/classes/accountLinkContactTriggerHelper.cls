@@ -1,6 +1,6 @@
 public with sharing class accountLinkContactTriggerHelper {
 
-    public static void afterInsert(List<Contact> contacts){
+    public static void beforeInsert(List<Contact> contacts){
 
         Set<String> lName = new Set<String>();
         for (Contact ct : contacts){
@@ -17,10 +17,15 @@ public with sharing class accountLinkContactTriggerHelper {
         for (Account acc : accounts){
             idMapAccoun.put(acc.Name, acc.Id);
         }
+        for (Contact c : contacts){
+            if (idMapAccoun.containsKey(c.LastName)) {
+                c.AccountId = idMapAccoun.get(c.LastName);
+            }
+        }
 
 
 //        System.debug(contactsIdsByStrings);
-        System.debug(accounts1 + 'acc');
+//        System.debug(accounts1 + 'acc');
     }
 
 }

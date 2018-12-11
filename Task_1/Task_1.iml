@@ -261,6 +261,10 @@
                             <option name="name" value="accountLinkContactTriggerHelper" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="accountLinkContactTriggerHelperTest" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />
