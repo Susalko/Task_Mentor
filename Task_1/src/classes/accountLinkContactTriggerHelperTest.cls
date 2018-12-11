@@ -22,7 +22,7 @@ public with sharing class accountLinkContactTriggerHelperTest {
         List<Account> accounts = new List<Account>();
         for (Integer i = 0; i < 10; i++){
             accounts.add(new Account(
-                    Name = 'Test' + i
+                    Name = 'Tester' + i
             ));
         }
         insert accounts;
@@ -43,11 +43,33 @@ public with sharing class accountLinkContactTriggerHelperTest {
         }
         Account assertAccount = [SELECT Id FROM Account WHERE Name = 'Tester1'];
         Contact assertContact = [SELECT AccountId FROM Contact WHERE Name = 'Tester1'];
-        System.debug(assertAccount.Id);
-        System.debug(assertContact.Id);
-        System.assertEquals(assertContact.Id, assertAccount.Id);
+        System.assertEquals(assertContact.AccountId, assertAccount.Id);
     }
+    @IsTest
+    static void TestAddListAccount(){
 
+        List<Contact> contacts = new List<Contact>();
+        for (Integer i = 0; i < 10; i++){
+            contacts.add(new Contact(LastName = 'Tester' + i));
+        }
+        User StandartUser = [SELECT Id FROM User Where UserName='CloneStandardUser@testorg.com'];
+        System.runAs(StandartUser){
+
+            insert contacts;
+        }
+        List<Account> assertListAccount = new List<Account>([SELECT Id
+                                                            FROM Account
+                                                            WHERE Name LIKE 'Tester%'
+                                                                    LIMIT 15]);
+        List<Contact> assertListContact = new List<Contact>([SELECT AccountId
+                                                                FROM Contact
+                                                                WHERE Name LIKE 'Tester%'
+                                                                    LIMIT 15]);
+        for (Integer i; i < assertListAccount.size(); i++){
+            System.assertEquals(assertListContact.get(i).AccountId, assertListAccount.get(i).Id);
+        }
+
+    }
 
 
 
