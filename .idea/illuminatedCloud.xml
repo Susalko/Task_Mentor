@@ -5,7 +5,7 @@
       <list>
         <IlluminatedCloudConnection>
           <option name="connectionName" value="Test Connect" />
-          <option name="defaultModuleName" value="Task_1" />
+          <option name="defaultModuleName" value="Modal" />
           <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/Test_Connect/OfflineSymbolTable.zip" />
         </IlluminatedCloudConnection>
       </list>

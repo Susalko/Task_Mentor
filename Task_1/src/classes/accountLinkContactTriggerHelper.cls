@@ -22,10 +22,6 @@ public with sharing class accountLinkContactTriggerHelper {
                 c.AccountId = idMapAccoun.get(c.LastName);
             }
         }
-
-
-//        System.debug(contactsIdsByStrings);
-//        System.debug(accounts1 + 'acc');
     }
 
 }
